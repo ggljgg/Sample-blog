@@ -39,10 +39,12 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['title'], 'required'],
+            [['title'], 'string', 'max' => 255],
             [['description', 'content'], 'string'],
-            [['date'], 'safe'],
+            [['date'], 'date', 'format' => 'php:Y-m-d'],
+            [['date'], 'default', 'value' => date('Y-m-d')],
             [['viewed', 'user_id', 'status', 'category_id'], 'integer'],
-            [['title', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
