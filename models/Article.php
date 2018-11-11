@@ -100,4 +100,29 @@ class Article extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Comment::className(), ['article_id' => 'id']);
     }
+
+    public function saveImage($filename)
+    {
+        $this->image = $filename;
+        
+        // saving into database without validation
+        return $this->save(false);
+    }
+
+    public function deleteImage()
+    {
+        $imageUploadModel = new ImageUpload;
+        $imageUploadModel->deleteCurrentImage($this->image);
+    }
+
+    public function getImage()
+    {
+        return ($this->image) ? '/uploads/' . $this->image : '/no-image.png';
+    }
+
+    public function beforeDelete()
+    {
+        $this->beforeDelete();
+        return parent::beforeDelete();
+    }
 }
