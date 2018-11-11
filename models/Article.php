@@ -111,7 +111,7 @@ class Article extends \yii\db\ActiveRecord
 
     public function deleteImage()
     {
-        $imageUploadModel = new ImageUpload;
+        $imageUploadModel = new ImageUpload();
         $imageUploadModel->deleteCurrentImage($this->image);
     }
 
@@ -122,7 +122,7 @@ class Article extends \yii\db\ActiveRecord
 
     public function beforeDelete()
     {
-        $this->beforeDelete();
+        $this->deleteImage();
         return parent::beforeDelete();
     }
 }
