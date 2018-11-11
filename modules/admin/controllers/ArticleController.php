@@ -133,6 +133,14 @@ class ArticleController extends Controller
     }
 
     /**
+     * Sets the Category of article.
+     */
+    public function actionSetCategory($id)
+    {
+        $article = $this->findModel($id);
+    }
+
+    /**
      * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
