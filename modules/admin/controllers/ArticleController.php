@@ -110,6 +110,15 @@ class ArticleController extends Controller
     }
 
     /**
+     * Sets the Article image.
+     */
+    public function actionSetImage($id)
+    {
+        $model = new ImageUpload;
+        return $this->render('image', ['model' => $model]);
+    }
+
+    /**
      * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
