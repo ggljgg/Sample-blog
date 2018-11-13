@@ -7,8 +7,10 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Article;
 
 class SiteController extends Controller
 {
@@ -61,7 +63,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = Article::find();
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 1]);
+        $models = $query->offset($pages->offset)
+                        ->limit($pages->limit)
+                        ->all();
+
+        return $this->render('index', [
+            'articles' => $models,
+            'pagination' => $pages
+        ]);
     }
 
     /**
