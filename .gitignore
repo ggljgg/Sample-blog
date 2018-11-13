@@ -32,5 +32,16 @@ tests/_support/_generated
 # vagrant folder
 /.vagrant
 
-# images with extension .jpg
+# images
 *.jpg
+*.png
+*.svg
+
+# html files
+*.html
+
+# fonts
+*.ttf
+*.woff
+*.woff2
+*.eot
