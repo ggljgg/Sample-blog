@@ -16,14 +16,14 @@ use yii\widgets\LinkPager;
                         </div>
                         <div class="post-content">
                             <header class="entry-header text-center text-uppercase">
-                                <h6><a href="#"><?= $article->category->title; ?></a></h6>
+                                <h6><a href="#"><?= $article->category->getTitle(); ?></a></h6>
 
-                                <h1 class="entry-title"><a href="blog.html"><?= $article->title; ?></a></h1>
+                                <h1 class="entry-title"><a href="blog.html"><?= $article->getTitle(); ?></a></h1>
 
 
                             </header>
                             <div class="entry-content">
-                                <p><?= $article->description; ?></p>
+                                <p><?= $article->getDescription(); ?></p>
 
                                 <div class="btn-continue-reading text-center text-uppercase">
                                     <a href="blog.html" class="more-link">Continue Reading</a>
@@ -31,10 +31,10 @@ use yii\widgets\LinkPager;
                             </div>
                             <div class="social-share">
                                 <span class="social-share-title pull-left text-capitalize">
-                                    By <a href="#">Rubel</a> On <?= $article->date; ?>
+                                    By <a href="#">Rubel</a> On <?= $article->getDate(); ?>
                                 </span>
                                 <ul class="text-center pull-right">
-                                    <li><a class="s-facebook" href="#"><i class="fa fa-eye"></i></a></li><?= (int) $article->viewed; ?>
+                                    <li><a class="s-facebook" href="#"><i class="fa fa-eye"></i></a></li><?= (int) $article->getViewed(); ?>
                                 </ul>
                             </div>
                         </div>
@@ -53,138 +53,45 @@ use yii\widgets\LinkPager;
                     
                     <aside class="widget">
                         <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>
-
-                        <div class="popular-post">
-
-
-                            <a href="#" class="popular-img"><img src="/public/images/p1.jpg" alt="">
-
-                                <div class="p-overlay"></div>
-                            </a>
-
-                            <div class="p-content">
-                                <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                <span class="p-date">February 15, 2016</span>
-
+                        <?php foreach($popularArticles as $popularArticle): ?>
+                            <div class="popular-post">
+                                <a href="#" class="popular-img"><img src="<?= $popularArticle->getImage(); ?>" alt="">
+                                    <div class="p-overlay"></div>
+                                </a>
+                                <div class="p-content">
+                                    <a href="#" class="text-uppercase"><?= $popularArticle->getTitle(); ?></a>
+                                    <span class="p-date"><?= $popularArticle->getDate(); ?></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="popular-post">
-
-                            <a href="#" class="popular-img"><img src="/public/images/p1.jpg" alt="">
-
-                                <div class="p-overlay"></div>
-                            </a>
-
-                            <div class="p-content">
-                                <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                <span class="p-date">February 15, 2016</span>
-                            </div>
-                        </div>
-                        <div class="popular-post">
-
-
-                            <a href="#" class="popular-img"><img src="/public/images/p1.jpg" alt="">
-
-                                <div class="p-overlay"></div>
-                            </a>
-
-                            <div class="p-content">
-                                <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                <span class="p-date">February 15, 2016</span>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </aside>
                     <aside class="widget pos-padding">
                         <h3 class="widget-title text-uppercase text-center">Recent Posts</h3>
-
-                        <div class="thumb-latest-posts">
-
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#" class="popular-img"><img src="/public/images/r-p.jpg" alt="">
-                                        <div class="p-overlay"></div>
-                                    </a>
-                                </div>
-                                <div class="p-content">
-                                    <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                    <span class="p-date">February 15, 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thumb-latest-posts">
-
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#" class="popular-img"><img src="/public/images/r-p.jpg" alt="">
-                                        <div class="p-overlay"></div>
-                                    </a>
-                                </div>
-                                <div class="p-content">
-                                    <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                    <span class="p-date">February 15, 2016</span>
+                        <?php foreach($recentArticles as $recentArticle): ?>
+                            <div class="thumb-latest-posts">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#" class="popular-img"><img src="<?= $recentArticle->getImage(); ?>" alt="">
+                                            <div class="p-overlay"></div>
+                                        </a>
+                                    </div>
+                                    <div class="p-content">
+                                        <a href="#" class="text-uppercase"><?= $recentArticle->getTitle(); ?></a>
+                                        <span class="p-date"><?= $recentArticle->getDate(); ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="thumb-latest-posts">
-
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#" class="popular-img"><img src="/public/images/r-p.jpg" alt="">
-                                        <div class="p-overlay"></div>
-                                    </a>
-                                </div>
-                                <div class="p-content">
-                                    <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                    <span class="p-date">February 15, 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thumb-latest-posts">
-
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#" class="popular-img"><img src="/public/images/r-p.jpg" alt="">
-                                        <div class="p-overlay"></div>
-                                    </a>
-                                </div>
-                                <div class="p-content">
-                                    <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                    <span class="p-date">February 15, 2016</span>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </aside>
                     <aside class="widget border pos-padding">
                         <h3 class="widget-title text-uppercase text-center">Categories</h3>
                         <ul>
-                            <li>
-                                <a href="#">Food & Drinks</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">Travel</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">Business</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">Story</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">DIY & Tips</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
-                            <li>
-                                <a href="#">Lifestyle</a>
-                                <span class="post-count pull-right"> (2)</span>
-                            </li>
+                            <?php foreach ($articleCategories as $articleCategory): ?>
+                                <li>
+                                    <a href="#"><?= $articleCategory->getTitle(); ?></a>
+                                    <span class="post-count pull-right"> (<?= $articleCategory->getArticlesCount(); ?>)</span>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </aside>
                 </div>
