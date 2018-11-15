@@ -8,24 +8,6 @@ use app\models\User;
 use app\models\LoginForm;
 
 class AuthController extends Controller {
-
-    public function actionTest()
-    {
-        $user = User::findOne(1);
-
-        //Yii::$app->user->login($user);
-        Yii::$app->user->logout();
-        
-        if (Yii::$app->user->isGuest)
-        {
-            echo 'guest';
-        }
-        else 
-        {
-            echo 'no guest';
-        }
-    }
-
     /**
      * Login action.
      *
@@ -43,7 +25,7 @@ class AuthController extends Controller {
         }
 
         $model->password = '';
-        return $this->render('/site/login', [
+        return $this->render('login', [
             'model' => $model,
         ]);
     }
