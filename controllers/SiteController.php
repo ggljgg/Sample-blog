@@ -64,33 +64,54 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $data = Article::getAll(1);
-        $popular = Article::getPopular();
-        $recent = Article::getRecent();
-        $categories = Category::getAll();
+        $popularArticles = Article::getPopular();
+        $recentArticles = Article::getRecent();
+        $articleCategories = Category::getAll();
 
         return $this->render('index', [
             'articles' => $data['articles'],
             'pagination' => $data['pagination'],
-            'popularArticles' => $popular,
-            'recentArticles' => $recent,
-            'articleCategories' => $categories
+            'popularArticles' => $popularArticles,
+            'recentArticles' => $recentArticles,
+            'articleCategories' => $articleCategories
         ]);
     }
 
     /**
      * 
      */
-    public function actionView()
+    public function actionView($id)
     {
-        return $this->render('single');
+        $article = Article::findOne($id);
+        $popularArticles = Article::getPopular();
+        $recentArticles = Article::getRecent();
+        $articleCategories = Category::getAll();
+
+        return $this->render('single', [
+            'article' => $article,
+            'popularArticles' => $popularArticles,
+            'recentArticles' => $recentArticles,
+            'articleCategories' => $articleCategories
+        ]);
     }
 
     /**
      * 
      */
-    public function actionCategory()
+    public function actionCategory($id)
     {
-        return $this->render('category');
+        $data = Category::getArticlesByCategory($id);
+        $popularArticles = Article::getPopular();
+        $recentArticles = Article::getRecent();
+        $articleCategories = Category::getAll();
+
+        return $this->render('category', [
+            'articles' => $data['articles'],
+            'pagination' => $data['pagination'],
+            'popularArticles' => $popularArticles,
+            'recentArticles' => $recentArticles,
+            'articleCategories' => $articleCategories
+        ]);
     }
 
     /**
