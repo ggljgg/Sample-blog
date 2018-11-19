@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\ContactForm;
+use app\models\CommentForm;
 use app\models\Article;
 use app\models\Category;
 
@@ -85,12 +86,16 @@ class SiteController extends Controller
         $popularArticles = Article::getPopular();
         $recentArticles = Article::getRecent();
         $articleCategories = Category::getAll();
+        $articleComments = $article->getArticleComments();
+        $commentForm = new CommentForm();
 
         return $this->render('single', [
             'article' => $article,
             'popularArticles' => $popularArticles,
             'recentArticles' => $recentArticles,
-            'articleCategories' => $articleCategories
+            'articleCategories' => $articleCategories,
+            'articleComments' => $articleComments,
+            'commentForm' => $commentForm
         ]);
     }
 
@@ -113,6 +118,20 @@ class SiteController extends Controller
         ]);
     }
     
+    public function actionComment($id)
+    {
+        $model = new CommentForm();
+        if (Yii::$app->request->isPost)
+        {
+            $model->load(Yii::$app->request->post());
+            if ($model->saveComment($id))
+            {
+                Yii::$app->getSession()->setFlash('comment', 'You comment will be added soon.');
+                return $this->redirect(['site/view', 'id' => $id]);
+            }
+        }
+    }
+
     /**
      * Displays contact page.
      *
