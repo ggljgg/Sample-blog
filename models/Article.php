@@ -95,6 +95,11 @@ class Article extends \yii\db\ActiveRecord
         return $this->hasMany(Comment::className(), ['article_id' => 'id']);
     }
 
+    // public static function getArticleComments()
+    // {
+    //     return $article->comments;
+    // }
+
     public function saveImage($filename)
     {
         $this->image = $filename;
@@ -167,7 +172,7 @@ class Article extends \yii\db\ActiveRecord
     
     public function getDate()
     {
-        return Yii::$app->formatter->asDate('2014-01-01');
+        return Yii::$app->formatter->asDate($this->date);
     }
 
     public function getTitle()
@@ -218,5 +223,10 @@ class Article extends \yii\db\ActiveRecord
     public static function getRecent()
     {
         return Article::find()->orderBy('date asc')->limit(4)->all();
+    }
+
+    public function getArticleComments()
+    {
+        return $this->getComments()->where(['status' => 1])->all();
     }
 }
