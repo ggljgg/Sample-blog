@@ -230,6 +230,11 @@ class Article extends \yii\db\ActiveRecord
         return $this->getComments()->where(['status' => 1])->all();
     }
 
+    public function getArticleTags()
+    {
+        return $this->tags;
+    }
+
     public function viewedCounter()
     {
         ++$this->viewed;

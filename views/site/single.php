@@ -22,8 +22,9 @@ use yii\helpers\Url;
                             <?= $article->getContent(); ?>
                         </div>
                         <div class="decoration">
-                            <a href="#" class="btn btn-default">Decoration</a>
-                            <a href="#" class="btn btn-default">Decoration</a>
+                            <?php foreach($articleTags as $tag): ?>
+                                <a href="#" class="btn btn-default"><?= $tag->getTitle(); ?></a>
+                            <?php endforeach; ?>
                         </div>
 
                         <div class="social-share">

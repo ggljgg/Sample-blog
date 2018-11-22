@@ -88,6 +88,7 @@ class SiteController extends Controller
         $articleCategories = Category::getAll();
         $articleComments = $article->getArticleComments();
         $commentForm = new CommentForm();
+        $articleTags = $article->getArticleTags();
 
         $article->viewedCounter();
 
@@ -97,7 +98,8 @@ class SiteController extends Controller
             'recentArticles' => $recentArticles,
             'articleCategories' => $articleCategories,
             'articleComments' => $articleComments,
-            'commentForm' => $commentForm
+            'commentForm' => $commentForm,
+            'articleTags' => $articleTags
         ]);
     }
 
