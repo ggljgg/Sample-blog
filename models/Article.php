@@ -235,4 +235,10 @@ class Article extends \yii\db\ActiveRecord
         ++$this->viewed;
         return $this->save(false);
     }
+
+    public function saveArticle()
+    {
+        $this->user_id = Yii::$app->user->id;
+        return $this->save();
+    }
 }
